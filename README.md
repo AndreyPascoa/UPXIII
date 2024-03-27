@@ -1,7 +1,7 @@
 <div>
-  <h1>OldFit</h1>
+  <h1>Stock Tracker</h1>
    <h2>Descrição:</h2>
-  <p>O Sistema de Gerenciamento de Estoque é uma plataforma desenvolvida para auxiliar empresas a controlar e administrar o estoque de produtos de forma eficiente</p>
+  <p>O Sistema de Gerenciamento de Estoque é uma plataforma desenvolvida para auxiliar empresas a controlar e administrar o estoque de produtos de forma eficiente.</p>
  <hr>
   <h2>Pré-requisitos:</h2>
   <img src="https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white">
@@ -13,16 +13,16 @@
   <ul>
     <li>Páginas:
       <ul>
-        <li>Página1</li>
-        <li>Página2</li>
+        <li>Login</li>
+        <li>Cadastro</li>
       </ul>
     </li>
   </ul>
 
   <h2>Implantações:</h2>
   <ul>
-    <li>Funcionalidade1: Descrição da funcionalidade 1.</li>
-    <li>Funcionalidade2: Descrição da funcionalidade 2.</li>
+    <li>Funcionalidade1: Permite o cadastro detalhado de produtos.</li>
+    <li>Funcionalidade2: Oferece um sistema de localização eficiente, ajudando os usuários a encontrar rapidamente a localização física de cada produto dentro do armazém ou loja.</li>
   </ul>
 
   <h2>Versionamento:</h2>
