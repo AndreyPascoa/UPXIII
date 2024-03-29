@@ -1,0 +1,23 @@
+{
+  "name": "upxiii",
+  "version": "1.0.0",
+  "description": "<div>\r   <h1>Stock Tracker</h1>\r    <h2>Descrição:</h2>\r   <p>O Sistema de Gerenciamento de Estoque é uma plataforma desenvolvida para auxiliar empresas a controlar e administrar o estoque de produtos de forma eficiente.</p>\r  <hr>\r   <h2>Pré-requisitos:</h2>\r   <img src=\"https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white\">\r   <img src=\"https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black\">\r   <img src=\"https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white\">\r   <img src=\"https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB\">",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.9.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "nodemon": "^3.1.0"
+  }
+}
