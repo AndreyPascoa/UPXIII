@@ -1,5 +1,5 @@
 <div>
-  <h1>Stock Tracker</h1>
+  <h1>Stock Trackr</h1>
    <h2>Descrição:</h2>
   <p>O Sistema de Gerenciamento de Estoque é uma plataforma desenvolvida para auxiliar empresas a controlar e administrar o estoque de produtos de forma eficiente.</p>
  <hr>
