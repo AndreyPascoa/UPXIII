@@ -1,8 +1,20 @@
 const connection = require('../connection/connection')
 
 const getProduto = async () => {
-    const produto = await connection.execute('SELECT * FROM produto')
+    const produto = await connection.execute('SELECT COUNT(*) FROM produto')
     return produto
+}
+
+const getValor = async () => {
+    const valor = await connection.execute('SELECT SUM(valor) AS soma_total FROM produto')
+}
+
+const createdUser = async (user) =>{
+    const {nome, email, senha} = user
+    
+    const query = 'INSERT INTO responsavel (nome, email, senha) VALUE (?, ?, ?)'
+    const createdUser = await connection.execute(query, [nome, email, senha])
+    return {insertId: createdUser.insertId}
 }
 
 const createProtudo = async (produto) => {
@@ -17,5 +29,7 @@ const createProtudo = async (produto) => {
 
 module.exports = {
     getProduto,
-    createProtudo
+    createProtudo,
+    getValor,
+    createdUser
 }
