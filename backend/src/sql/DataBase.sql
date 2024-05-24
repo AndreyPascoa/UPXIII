@@ -1,5 +1,7 @@
 USE UPXIII;
 
+SELECT * FROM produto 
+
 CREATE TABLE Responsavel (
     RC int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(45) NOT NULL,

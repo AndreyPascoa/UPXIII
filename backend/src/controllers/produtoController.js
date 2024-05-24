@@ -2,20 +2,29 @@ const produtoModel = require('../models/produtoModel')
 
 const produtoGetAll = async (req, res) => {
 
-    const produto = await produtoModel.getProduto()
+    const result = await produtoModel.getProduto()
 
-    return res.status(200).json(produto)
+    const total = result[0][0].total;
+    return res.status(200).json({ total: total })
 }
 
 const valorGetAll = async (req, res) => {
-    const valor = await produtoModel.getValor()
+    const result = await produtoModel.getValor();
 
-    return res.status(200).json(valor)
+    const somaTotal = result[0][0].soma_total;
+    return res.status(200).json({ soma_total: somaTotal });
 }
 
-const createdUser = async (req, res) => {
-    const createdUser = await produtoModel.createdUser(req.body)
-    return res,status(201),json(createdUser)
+const createUser = async (req, res) => {
+    const { nome, email, senha } = req.body;
+
+    try {
+        const newUser = await produtoModel.createdUser({ nome, email, senha });
+        return res.status(201).json({ message: "Usuário criado com sucesso!", newUser });
+    } catch (error) {
+        console.error("Erro ao criar usuário:", error);
+        return res.status(500).json({ error: "Erro interno do servidor" });
+    }
 }
 
 const createdProduto = async (req, res) => {
@@ -27,5 +36,5 @@ module.exports = {
     produtoGetAll,
     createdProduto,
     valorGetAll,
-    createdUser
+    createUser
 }
