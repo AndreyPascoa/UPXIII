@@ -1,18 +1,25 @@
-const produtoModel = require('../models/produtoModel')
+const produtoModel = require('../models/produtoModel');
 
 const produtoGetAll = async (req, res) => {
-
-    const result = await produtoModel.getProduto()
-
-    const total = result[0][0].total;
-    return res.status(200).json({ total: total })
+    try {
+        const result = await produtoModel.getProduto();
+        const total = result[0][0].total;
+        return res.status(200).json({ total });
+    } catch (error) {
+        console.error("Erro ao obter produtos:", error);
+        return res.status(500).json({ error: "Erro interno do servidor" });
+    }
 }
 
 const valorGetAll = async (req, res) => {
-    const result = await produtoModel.getValor();
-
-    const somaTotal = result[0][0].soma_total;
-    return res.status(200).json({ soma_total: somaTotal });
+    try {
+        const result = await produtoModel.getValor();
+        const somaTotal = result[0][0].soma_total;
+        return res.status(200).json({ soma_total: somaTotal });
+    } catch (error) {
+        console.error("Erro ao obter valores:", error);
+        return res.status(500).json({ error: "Erro interno do servidor" });
+    }
 }
 
 const createUser = async (req, res) => {
@@ -28,8 +35,13 @@ const createUser = async (req, res) => {
 }
 
 const createdProduto = async (req, res) => {
-    const createdProduto = await produtoModel.createProtudo(req.body)
-    return res.status(201).json(createdProduto)
+    try {
+        const createdProduto = await produtoModel.createProtudo(req.body);
+        return res.status(201).json(createdProduto);
+    } catch (error) {
+        console.error("Erro ao criar produto:", error);
+        return res.status(500).json({ error: "Erro interno do servidor" });
+    }
 }
 
 const logIn = async (req, res) => {
@@ -52,11 +64,37 @@ const getGridItens = async (req, res) => {
     }
 }
 
+const removeQuantidade = async (req, res) => {
+    const { nome, codigo, quantidade } = req.body;
+
+    try {
+        const result = await produtoModel.removeQuantidadeProduto(nome, codigo, quantidade);
+        return res.status(200).json(result);
+    } catch (error) {
+        console.error("Erro ao remover quantidade do produto:", error);
+        return res.status(500).json({ error: "Erro interno do servidor" });
+    }
+}
+
+const removeProduto = async (req, res) => {
+    const { codigo } = req.body;
+
+    try {
+        const result = await produtoModel.removeProduto(codigo);
+        return res.status(200).json(result);
+    } catch (error) {
+        console.error("Erro ao remover produto:", error);
+        return res.status(500).json({ error: "Erro interno do servidor" });
+    }
+}
+
 module.exports = {
     produtoGetAll,
-    createdProduto,
     valorGetAll,
     createUser,
+    createdProduto,
     logIn,
-    getGridItens
+    getGridItens,
+    removeQuantidade,
+    removeProduto
 }
