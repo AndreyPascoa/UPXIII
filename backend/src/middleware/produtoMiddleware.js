@@ -11,6 +11,15 @@ const validateBody = (req, res, next) => {
     next()
 }
 
+const validateBodyLogIn = (req, res, next) => {
+    const { email, senha } = req.body;
+    if (!email || !senha) {
+        return res.status(400).json({ message: 'Os campos "email" e "senha" são obrigatórios' });
+    }
+    next();
+}
+
 module.exports = {
-    validateBody
+    validateBody,
+    validateBodyLogIn
 }

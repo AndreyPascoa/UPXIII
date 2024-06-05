@@ -34,9 +34,32 @@ const createProtudo = async (produto) => {
     return {insertId: createdProduto.insertId}
 }
 
+const logIn = async (login) => {
+    const { email, senha } = login;
+    const query = 'SELECT COUNT(*) as validacao FROM responsavel WHERE email = ? AND senha = ?';
+    const [result] = await connection.execute(query, [email, senha]);
+    return result[0].validacao > 0 ? 1 : 0;
+}
+
+const gridItens = async () => {
+    const [rows] = await connection.execute('SELECT nomeProduto, valor, categoria, local, quantidade, peso FROM produto');
+    const numberedRows = rows.map((row, index) => ({
+        id: index + 1,
+        nomeProduto: row.nomeProduto,
+        valor: row.valor,
+        categoria: row.categoria,
+        local: row.local,
+        quantidade: row.quantidade,
+        peso: row.peso
+    }));
+    return { 'GridItens': numberedRows };
+}
+
 module.exports = {
     getProduto,
     createProtudo,
     getValor,
-    createdUser
+    createdUser,
+    logIn,
+    gridItens
 }

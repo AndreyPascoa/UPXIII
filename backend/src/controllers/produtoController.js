@@ -32,9 +32,31 @@ const createdProduto = async (req, res) => {
     return res.status(201).json(createdProduto)
 }
 
+const logIn = async (req, res) => {
+    try {
+        const validacao = await produtoModel.logIn(req.body);
+        return res.status(200).json({ validacao });
+    } catch (error) {
+        console.error("Erro ao realizar login:", error);
+        return res.status(500).json({ error: "Erro interno do servidor" });
+    }
+}
+
+const getGridItens = async (req, res) => {
+    try {
+        const gridItens = await produtoModel.gridItens();
+        return res.status(200).json(gridItens);
+    } catch (error) {
+        console.error("Erro ao obter itens do grid:", error);
+        return res.status(500).json({ error: "Erro interno do servidor" });
+    }
+}
+
 module.exports = {
     produtoGetAll,
     createdProduto,
     valorGetAll,
-    createUser
+    createUser,
+    logIn,
+    getGridItens
 }
