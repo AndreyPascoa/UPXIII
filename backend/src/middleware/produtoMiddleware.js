@@ -1,5 +1,5 @@
 const validateBody = (req, res, next) => {
-    const { email, senha, nome, codigo, quantidade } = req.body;
+    const { email, senha, nome, codigo, quantidade, valor } = req.body;
     if (req.path === '/removeQuantidade' || req.path === '/removeProduto') {
         if (!codigo) {
             return res.status(400).json({ message: 'O campo "codigo" é obrigatório' });
@@ -17,11 +17,6 @@ const validateBody = (req, res, next) => {
     }
     next();
 }
-
-module.exports = {
-    validateBody
-}
-
 
 const validateBodyLogIn = (req, res, next) => {
     const { email, senha } = req.body;

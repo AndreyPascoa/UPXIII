@@ -65,10 +65,10 @@ const getGridItens = async (req, res) => {
 }
 
 const removeQuantidade = async (req, res) => {
-    const { nome, codigo, quantidade } = req.body;
+    const { codigo, quantidade } = req.body;
 
     try {
-        const result = await produtoModel.removeQuantidadeProduto(nome, codigo, quantidade);
+        const result = await produtoModel.removeQuantidadeProduto(codigo, quantidade);
         return res.status(200).json(result);
     } catch (error) {
         console.error("Erro ao remover quantidade do produto:", error);

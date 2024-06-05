@@ -26,16 +26,15 @@ const createdUser = async (user) => {
 const createProtudo = async (produto) => {
     const { nome, peso, valor, categoria, codigo, local, quantidade } = produto;
 
-    const queryCheck = 'SELECT quantidade, valorTotal FROM produto WHERE codigo = ?';
+    const queryCheck = 'SELECT quantidade, valor FROM produto WHERE codigo = ?';
     const [rows] = await connection.execute(queryCheck, [codigo]);
 
     const valorTotal = quantidade * valor;
 
     if (rows.length > 0) {
         const quantidadeAtual = rows[0].quantidade;
-        const valorTotalAtual = rows[0].valorTotal;
         const novaQuantidade = quantidadeAtual + quantidade;
-        const novoValorTotal = valorTotalAtual + valorTotal;
+        const novoValorTotal = novaQuantidade * valor;
         const queryUpdate = 'UPDATE produto SET quantidade = ?, valorTotal = ? WHERE codigo = ?';
         await connection.execute(queryUpdate, [novaQuantidade, novoValorTotal, codigo]);
         return { message: 'Quantidade e valor total atualizados com sucesso' };
@@ -54,7 +53,7 @@ const logIn = async (login) => {
 }
 
 const gridItens = async () => {
-    const [rows] = await connection.execute('SELECT nomeProduto, valor, categoria, local, quantidade, peso, codigo FROM produto');
+    const [rows] = await connection.execute('SELECT nomeProduto, valor, categoria, local, quantidade, peso, codigo, valorTotal FROM produto');
     const numberedRows = rows.map((row, index) => ({
         id: index + 1,
         nomeProduto: row.nomeProduto,
@@ -63,12 +62,13 @@ const gridItens = async () => {
         local: row.local,
         quantidade: row.quantidade,
         peso: row.peso,
-        codigo: row.codigo
+        codigo: row.codigo,
+        valorTotal: row.valorTotal
     }));
     return { 'GridItens': numberedRows };
 }
 
-const removeQuantidadeProduto = async (nome, codigo, quantidade) => {
+const removeQuantidadeProduto = async (codigo, quantidade) => {
     const queryCheck = 'SELECT quantidade, valor FROM produto WHERE codigo = ?';
     const [rows] = await connection.execute(queryCheck, [codigo]);
 
